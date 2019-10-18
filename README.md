@@ -9,7 +9,7 @@
   |  name  |  string  |
   |  email  |  string  |
   |  password_digest  |  string  |
-### Taskモデル
+### TASKモデル
   |  カラム名  |  データ型 |
   | ---- | ---- |
   |  id  |  integer  |

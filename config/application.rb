@@ -10,8 +10,8 @@ module Taskapp
     # change erb to slim
     config.generators.template_engine = :slim
     # set time_zone
-    config.time_zone = 'Tokyo'
-    config.active_record.default_timezone = :local
+    #config.time_zone = 'Tokyo'
+    #config.active_record.default_timezone = :local
     # delete html_tag from error
     #config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       #%Q(#{html_tag}).html_safe
@@ -24,16 +24,5 @@ module Taskapp
     end
     # 404 & 500 are defined on /errors/*.html.slim
     #config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
-    # not producing files at rails generate command
-    config.generators do |g|
-      g.test_framework :rspec,
-                       fixtures: true,
-                       view_specs: false,
-                       helper_specs: false,
-                       routing_specs: false,
-                       controller_specs: false,
-                       request_specs: false
-      g.fixture_replacement :factory_bot, dir: "spec/factories"
-    end
   end
 end

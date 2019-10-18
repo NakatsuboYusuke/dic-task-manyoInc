@@ -48,20 +48,12 @@ group :development do
   gem 'letter_opener_web'
   # Security
   gem 'dotenv-rails'
-  # Rspec
-  gem 'factory_bot_rails'
-  gem 'spring-commands-rspec'
 end
 
 group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
-  # Rspec
-  gem 'rspec-rails'
-  gem 'database_cleaner'
-  gem 'webdrivers'
-  gem 'launchy'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
