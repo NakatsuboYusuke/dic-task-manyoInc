@@ -29,7 +29,7 @@ gem 'faker'
 # Backend
 gem 'jbuilder', '~> 2.5'
 # delete turbolinks for javascript
-#gem 'turbolinks', '~> 5'
+gem 'turbolinks', '~> 5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails-i18n'
 gem 'bcrypt', '3.1.11'
