@@ -10,8 +10,8 @@ module Taskapp
     # change erb to slim
     config.generators.template_engine = :slim
     # set time_zone
-    #config.time_zone = 'Tokyo'
-    #config.active_record.default_timezone = :local
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :local
     # delete html_tag from error
     #config.action_view.field_error_proc = Proc.new do |html_tag, instance|
       #%Q(#{html_tag}).html_safe
