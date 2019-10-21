@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature 'タスク管理機能', type: :feature do
-  
+
   scenario 'タスク一覧のテスト' do
     Task.create!(title: 'test_task_01', description: 'testtesttest')
     Task.create!(title: 'test_task_02', description: 'samplesample')
@@ -17,6 +17,7 @@ RSpec.feature 'タスク管理機能', type: :feature do
     click_button 'Create Task'
     expect(page).to have_content 'test_task_01'
     expect(page).to have_content 'testtesttest'
+    save_and_open_page
   end
 
   scenario 'タスク詳細のテスト' do
@@ -24,6 +25,10 @@ RSpec.feature 'タスク管理機能', type: :feature do
     visit tasks_path
     click_link '詳細'
     expect(page).to have_content 'test_task_01'
+<<<<<<< HEAD
+=======
+    save_and_open_page
+>>>>>>> b4f88989b34e9d55dff9ca4415a8a9e6055fcc15
   end
 
 end
