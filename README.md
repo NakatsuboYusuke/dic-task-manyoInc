@@ -31,13 +31,13 @@
   |  task_id  |  references  |
   |  label_id  |  references  |
 
-##Herokuのアプリケーション情報
+## Herokuのアプリケーション情報
 
 - URL https://taskapp-heroku.herokuapp.com/
 - Ruby 2.6.5
 - Rails 5.2.3
 
-##Herokuへのデプロイ方法
+## Herokuへのデプロイ方法
 
 - Herokuへログインします。  
   ```$ heroku login```
