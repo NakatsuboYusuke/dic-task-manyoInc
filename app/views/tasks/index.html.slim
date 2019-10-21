@@ -14,6 +14,7 @@ table.table.table-hover
       tr
         td = task.title
         td = task.description
+        /td = task.created_at
         td
           = link_to '詳細', task_path(task.id), class: 'btn btn-default'
           = link_to '編集', edit_task_path(task.id), class: 'btn btn-primary mr-3'
