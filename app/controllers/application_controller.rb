@@ -5,10 +5,10 @@ class ApplicationController < ActionController::Base
   private
 
   def basic
-    name = 'hoge'
-    passwd = 'e86797b125848e625d70987c20e4127bbb3db51a'
-    authenticate_or_request_with_http_basic('BA') do |n, p|
-      n == name && Digest::SHA1.hexdigest(p) == passwd
+    if Rails.env == "production"
+      authenticate_or_request_with_http_basic do |name, password|
+        name == ENV['BASIC_AUTH_NAME'] && password == ENV['BASIC_AUTH_PASSWORD']
+      end
     end
   end
 
