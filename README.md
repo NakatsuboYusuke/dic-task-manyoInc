@@ -16,7 +16,7 @@
   |  user_id  |  references  |
   |  title  |  string  |
   |  description  |  text  |
-  |  limit  |  integer  |
+  |  limited_at  |  datetime  |
   |  priority  |  integer  |
   |  status  |  integer  |
 ### Labelモデル
@@ -46,3 +46,8 @@
   ```$ git commit -m 'コメントを入力します'```  
   ```$ git push origin master```
 - Herokuへ自動的にデプロイします。
+
+## チェンジログ
+- 10/21 Herokuへのデプロイ方法を追記しました
+- 10/23 Taskモデルのlimitカラムのカラム名とデータ型を変更しました  
+  limit: integer => limited_at: datetime
