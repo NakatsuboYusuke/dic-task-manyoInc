@@ -10,7 +10,7 @@ gem 'rails', '~> 5.2.3'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.11'
 
-# View/Font
+# View/Frontend
 gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails'
 gem 'jquery-rails'
@@ -19,6 +19,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'slim-rails'
 gem 'html2slim'
 gem 'font-awesome-rails'
+gem 'ransack'
 
 # Debug
 gem 'pry-rails'

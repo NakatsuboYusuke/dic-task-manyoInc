@@ -4,4 +4,7 @@ class Task < ApplicationRecord
   validates :description, presence: true
   #validates :limited_at, presence: true
 
+  # scope method
+  scope :recent, -> { order(created_at: :desc) }
+
 end
