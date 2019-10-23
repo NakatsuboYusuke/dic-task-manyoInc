@@ -8,13 +8,13 @@ table.table.table-hover
     tr
       th = Task.human_attribute_name(:title)
       th = Task.human_attribute_name(:description)
-      th
+      th = sort_link(@q, :limited_at, '終了期限でソートする', default_order: :desc)
   tbody
     - @tasks.each do |task|
       tr
         td = task.title
         td = task.description
-        /td = task.created_at
+        td = task.limited_at
         td
           = link_to '詳細', task_path(task.id), class: 'btn btn-default'
           = link_to '編集', edit_task_path(task.id), class: 'btn btn-primary mr-3'
