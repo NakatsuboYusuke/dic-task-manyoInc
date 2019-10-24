@@ -3,10 +3,8 @@ class TasksController < ApplicationController
   before_action :set_tasks, only: [:show, :edit, :update, :destroy]
 
   def index
-    #@tasks = Task.recent
     @q = Task.ransack(params[:q])
-    #@tasks = @q.result(distinct: true).recent
-    @tasks = @q.result.recent
+    @tasks = @q.result.page(params[:page]).recent
   end
 
   def show
@@ -18,7 +16,7 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    if @task.save #save!
+    if @task.save
       redirect_to task_path(@task.id), notice: "タスク「#{@task.title}」を登録しました。"
     else
       render :new
@@ -29,7 +27,7 @@ class TasksController < ApplicationController
   end
 
   def update
-    if @task.update(task_params) #update!
+    if @task.update(task_params)
       redirect_to task_path(@task.id), notice: "タスク「#{@task.title}」を更新しました。"
     else
       render :edit

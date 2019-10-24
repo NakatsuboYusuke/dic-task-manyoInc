@@ -21,6 +21,8 @@ gem 'html2slim'
 gem 'font-awesome-rails'
 gem 'ransack'
 gem 'enum_help'
+gem 'kaminari'
+gem 'bootstrap'
 
 # Debug
 gem 'pry-rails'

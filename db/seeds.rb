@@ -1,4 +1,4 @@
-10000.times do |n|
+100.times do |n|
   title = Faker::JapaneseMedia::DragonBall.character
   description = Faker::JapaneseMedia::OnePiece.character
   limited_at = Faker::Date.between(from: 2.days.ago, to: Date.today)
