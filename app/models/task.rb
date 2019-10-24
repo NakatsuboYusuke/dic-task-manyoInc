@@ -44,7 +44,7 @@ class Task < ApplicationRecord
   end
 
   ransacker :priority do
-    Arel.sql("to_char(status, '9999999')")
+    Arel.sql("to_char(priority, '9999999')")
   end
 
   def self.set_priorities
