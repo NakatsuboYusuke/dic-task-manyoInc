@@ -58,4 +58,13 @@ RSpec.feature 'タスク管理機能', type: :feature do
     expect(@tasks[0]).to have_content 'man'
     expect(@tasks[2]).to have_content 'test'
   end
+
+  scenario 'タスクが優先順位でソートできるかのテスト' do
+    visit tasks_path
+    click_link '優先順位でソートする'
+    @tasks = all('tbody tr')
+    save_and_open_page
+    expect(@tasks[0]).to have_content 'test'
+    expect(@tasks[2]).to have_content 'man'
+  end
 end

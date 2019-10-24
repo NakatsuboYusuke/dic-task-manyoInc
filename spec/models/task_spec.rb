@@ -17,8 +17,13 @@ RSpec.describe Task, type: :model do
     expect(task).to be_valid
   end
 
+  it "フォームに内容が記載されていればバリデーションが通る" do
+    task = Task.new(title: '成功テスト', description: '成功テスト', limited_at: Time.now + 2.days, status: 0, priority: 0)
+    expect(task).to be_valid
+  end
+
   it "title検索ができる" do
-    task = Task.create(title: '成功テスト', description: '成功テスト', limited_at: Time.now + 2.days, status: 0)
+    task = Task.create(title: '成功テスト', description: '成功テスト', limited_at: Time.now + 2.days, status: 0, priority: 0)
     params = Hash.new
     params[:q] = Hash.new
     params[:q][:title_cont] = '成功テスト'
@@ -27,7 +32,7 @@ RSpec.describe Task, type: :model do
   end
 
   it "status検索ができる" do
-    task = Task.create(title: '成功テスト', description: '成功テスト', limited_at: Time.now + 2.days, status: 0)
+    task = Task.create(title: '成功テスト', description: '成功テスト', limited_at: Time.now + 2.days, status: 0, priority: 0)
     params = Hash.new
     params[:q] = Hash.new
     params[:q][:status] = 0
@@ -36,7 +41,7 @@ RSpec.describe Task, type: :model do
   end
 
   it "title検索とstatus検索ができる" do
-    task = Task.create(title: '成功テスト', description: '成功テスト', limited_at: Time.now + 2.days, status: 0)
+    task = Task.create(title: '成功テスト', description: '成功テスト', limited_at: Time.now + 2.days, status: 0, priority: 0)
     params = Hash.new
     params[:q] = Hash.new
     params[:q][:status] = 0

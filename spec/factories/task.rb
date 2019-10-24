@@ -4,6 +4,7 @@ FactoryBot.define do
     description { 'testtesttest' }
     limited_at { Time.now + 2.days }
     status { 0 }
+    priority { 0 }
     created_at { Time.now + 2.days }
   end
 
@@ -12,6 +13,7 @@ FactoryBot.define do
     description { 'mofmofmofmof' }
     limited_at { Time.now + 1.days }
     status { 1 }
+    priority { 1 }
     created_at { Time.now + 1.days }
   end
 
@@ -20,6 +22,7 @@ FactoryBot.define do
     description { 'manmanmanman' }
     limited_at { Time.now }
     status { 2 }
+    priority { 2 }
     created_at { Time.now }
   end
 end
