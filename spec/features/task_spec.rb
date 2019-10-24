@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.feature 'タスク管理機能', type: :feature do
-  #background do
-    #FactoryBot.create(:task, created_at: Time.now + 2.days)
-    #FactoryBot.create(:second_task, created_at: Time.now + 1.days)
-    #FactoryBot.create(:third_task, created_at: Time.now)
-  #end
+  background do
+    FactoryBot.create(:task)
+    FactoryBot.create(:second_task)
+    FactoryBot.create(:third_task)
+  end
 
   scenario 'タスク一覧のテスト', skip: true do
     visit tasks_path
@@ -36,7 +36,7 @@ RSpec.feature 'タスク管理機能', type: :feature do
     expect(@tasks[2]).to have_content 'man'
   end
 
-  scenario '日時の作成のテスト' do
+  scenario '日時の作成のテスト', skip: true do
     visit new_task_path
     fill_in '名称', with: 'test_task_01'
     fill_in '詳しい説明', with: 'testtesttest'
@@ -48,5 +48,14 @@ RSpec.feature 'タスク管理機能', type: :feature do
     click_button '登録する'
     save_and_open_page
     expect(page).to have_content '2019-12-31 23:59'
+  end
+
+  scenario 'タスクが終了期限でソートできるかのテスト' do
+    visit tasks_path
+    click_link '終了期限でソートする'
+    @tasks = all('tbody tr')
+    save_and_open_page
+    expect(@tasks[0]).to have_content 'man'
+    expect(@tasks[2]).to have_content 'test'
   end
 end

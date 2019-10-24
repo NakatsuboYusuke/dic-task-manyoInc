@@ -5,7 +5,8 @@ class TasksController < ApplicationController
   def index
     #@tasks = Task.recent
     @q = Task.ransack(params[:q])
-    @tasks = @q.result(distinct: true)
+    #@tasks = @q.result(distinct: true).recent
+    @tasks = @q.result.recent
   end
 
   def show
@@ -47,7 +48,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :description, :limited_at)
+    params.require(:task).permit(:title, :description, :limited_at, :status)
   end
 
 end
