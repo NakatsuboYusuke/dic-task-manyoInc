@@ -7,4 +7,13 @@ Rails.application.routes.draw do
   resources :tasks do
   end
 
+  # users
+  resources :users do
+  end
+
+  # session
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+
 end
