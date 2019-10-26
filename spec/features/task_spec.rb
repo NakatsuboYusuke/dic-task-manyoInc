@@ -20,7 +20,6 @@ RSpec.feature 'タスク管理機能', type: :feature do
     click_button '登録する'
     save_and_open_page
     expect(page).to have_content 'test_task_01'
-    expect(page).to have_content 'testtesttest'
   end
 
   scenario 'タスク詳細のテスト', skip: true do

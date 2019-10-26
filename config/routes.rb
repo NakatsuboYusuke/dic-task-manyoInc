@@ -3,17 +3,26 @@ Rails.application.routes.draw do
   # root
   root to: 'tasks#index'
 
-  # tasks
-  resources :tasks do
+  # admin/users
+  namespace :admin do
+    resources :users do
+    end
   end
 
   # users
   resources :users do
   end
 
-  # session
+  # tasks
+  resources :tasks do
+  end
+
+  # sessions
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+
+  # errors
+  get '*anything' => 'errors#routing_error'
 
 end

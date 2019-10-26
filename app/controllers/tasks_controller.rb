@@ -1,14 +1,16 @@
 class TasksController < ApplicationController
 
   before_action :set_tasks, only: [:show, :edit, :update, :destroy]
+  before_action :current_user?, only: [:edit, :update, :destroy]
   skip_before_action :login_forbided
 
   def index
-    @q = Task.ransack(params[:q])
+    @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result.page(params[:page]).recent
   end
 
   def show
+    redirect_to tasks_path unless current_user.id == @task.user_id
   end
 
   def new
@@ -48,6 +50,11 @@ class TasksController < ApplicationController
 
   def task_params
     params.require(:task).permit(:title, :description, :limited_at, :status, :priority)
+  end
+
+  def current_user?
+    @task = Task.find(params[:id])
+    redirect_to task_path(@task.id) unless @task.user_id == current_user.id
   end
 
 end
