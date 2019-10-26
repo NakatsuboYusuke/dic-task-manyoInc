@@ -1,10 +1,14 @@
 class Task < ApplicationRecord
 
+  # validation
   validates :title, presence: true, length: { maximum: 30 }
   validates :description, presence: true
   validates :limited_at, presence: true
   validates :status, presence: true
   validates :priority, presence: true
+
+  # association
+  belongs_to :user
 
   # scope method
   scope :recent, -> { order(created_at: :desc) }

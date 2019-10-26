@@ -10,7 +10,18 @@ html
   body
     .app-title.navbar.navbar-expand-md.navbar-light.bg-light
       .navbar-brand
-        h1 TaskApp
+        = link_to root_path do
+          h1 TaskApp
+      ul.navbar-nav.ml-auto
+        - if current_user
+          - if current_user.admin?
+            li.nav-item = link_to 'ユーザー一覧', admin_users_path, class: 'nav-link'
+          li.nav-item= link_to 'タスク一覧', tasks_path, class: 'nav-link'
+          li.nav-item = link_to 'マイページ', admin_user_path(current_user.id), class: 'nav-link'
+          li.nav-item = link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
+        - else
+          li.nav-item = link_to 'ログイン', login_path, class: 'nav-link'
+          li.nav-item = link_to 'サインアップ', new_user_path, class: 'nav-link'
     .container
       - if flash.notice.present?
         .alert.alert-success = flash.notice
