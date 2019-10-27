@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   # call_back
   before_update do
-    throw :abort if User.where(admin: true).count < 2 && User.find_by(admin: true).id == self.id
+    throw :abort if User.where(admin: true).count < 2 && User.find_by(admin: true).id == self.id && self.admin == false
   end
 
   before_destroy do

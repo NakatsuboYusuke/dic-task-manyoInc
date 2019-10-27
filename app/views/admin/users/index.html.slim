@@ -20,4 +20,4 @@ table.table.table-hover
         td = user.tasks.count
         td
           = link_to '編集', edit_admin_user_path(user), class: 'btn btn-primary mr-3'
-          = link_to '削除', [:admin, user], method: :delete, data: { confirm: "ユーザ「#{user.name}」を削除します。よろしいですか？" }, class: 'btn btn-danger'
+          = link_to '削除', [:admin, user], method: :delete, class: 'btn btn-danger', data: { confirm: "ユーザ「#{user.name}」を削除します。よろしいですか？" }

@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_action :set_user, only: [:show]
   skip_before_action :login_required, only: [:new, :create]
-  skip_before_action :login_forbided
+  skip_before_action :login_forbided, only: [:show]
 
   def new
     @user = User.new
@@ -19,6 +19,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    redirect_to tasks_path unless @user.id == current_user.id
   end
 
   private

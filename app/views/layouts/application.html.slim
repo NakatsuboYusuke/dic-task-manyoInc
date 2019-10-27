@@ -17,7 +17,7 @@ html
           - if current_user.admin?
             li.nav-item = link_to 'ユーザー一覧', admin_users_path, class: 'nav-link'
           li.nav-item= link_to 'タスク一覧', tasks_path, class: 'nav-link'
-          li.nav-item = link_to 'マイページ', admin_user_path(current_user.id), class: 'nav-link'
+          li.nav-item = link_to 'マイページ', user_path(current_user.id), class: 'nav-link'
           li.nav-item = link_to 'ログアウト', logout_path, method: :delete, class: 'nav-link'
         - else
           li.nav-item = link_to 'ログイン', login_path, class: 'nav-link'
