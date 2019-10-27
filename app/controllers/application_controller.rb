@@ -1,18 +1,12 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
+  include ErrorHandler #if Rails.env.production?
 
   helper_method :current_user
   before_action :basic
   before_action :login_required
   before_action :login_forbided
-
-  class Forbidden < ActionController::ActionControllerError; end
-  rescue_from Forbidden, with: :rescue403
-  def rescue403(e)
-    @exception = e
-    render 'errors/forbidden', status: 403
-  end
 
   private
 
