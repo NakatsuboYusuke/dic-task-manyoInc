@@ -49,5 +49,5 @@ RSpec.describe Task, type: :model do
     expect(task.title).to eq result[0][:title]
     expect(task.status).to eq result[0][:status]
   end
-end
 
+end
