@@ -19,4 +19,8 @@
   .form-group
     = f.label :priority
     = f.select :priority, Task.set_priority_key, class: 'form-control', id: 'task_priority'
+  .form-group
+    = f.label :term
+    = f.text_field :term, value: @labels, class: 'form-control', id: 'task_priority'
+    p カンマ区切り（,）で入力してください。
   = f.submit nil, class: 'btn btn-primary'

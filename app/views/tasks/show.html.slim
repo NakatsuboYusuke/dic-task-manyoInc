@@ -24,6 +24,12 @@ table.table.table-hover
       th = Task.human_attribute_name(:priority)
       td = @task.priority
     tr
+      th = Task.human_attribute_name(:term)
+      td
+        - @task.labels.each do |l|
+          = l.term
+          br
+    tr
       th = Task.human_attribute_name(:created_at)
       td = @task.created_at
     tr
