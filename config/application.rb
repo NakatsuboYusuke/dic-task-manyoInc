@@ -33,7 +33,6 @@ module Taskapp
                        request_specs: false
       g.fixture_replacement :factory_bot, dir: "spec/factories"
     end
-    # 403 & 404 & 500 are defined on /errors/*.html.slim
-    config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
+    #config.autoload_paths += Dir[Rails.root.join('app', 'uploaders')]
   end
 end

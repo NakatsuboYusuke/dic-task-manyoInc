@@ -23,6 +23,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   # errors
-  get '*anything' => 'errors#routing_error'
+  get '*anything', to: 'errors#routing_error'
 
 end
