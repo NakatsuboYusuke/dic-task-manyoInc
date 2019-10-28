@@ -15,13 +15,12 @@ class TasksController < ApplicationController
     elsif params[:q]
       @labels = Label.all
       @q = current_user.tasks.ransack(params[:q])
-      #binding.pry
       @tasks = @q.result(distinct: true).includes(:labels, :labellings).page(params[:page]).recent
     end
   end
 
   def show
-    redirect_to tasks_path unless current_user.id == @task.user_id
+    raise Forbidden unless current_user.id == @task.user_id
   end
 
   def new
