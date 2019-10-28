@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    redirect_to tasks_path unless @user.id == current_user.id
+    raise Forbidden unless @user.id == current_user.id
   end
 
   private

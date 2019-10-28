@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def login_forbided
-    redirect_to tasks_path if current_user
+    raise Forbidden if current_user
   end
 
 end
