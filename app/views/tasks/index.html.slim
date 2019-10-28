@@ -1,6 +1,6 @@
 h2 タスク一覧
 
-= search_form_for @q, class: 'mb-5' do |f|
+= search_form_for @q, url: root_path, class: 'mb-5' do |f|
   .form-group.row
     = f.label :title_cont, '名称', class: 'col-sm-2 col-form-label'
     .col-sm-10
@@ -9,6 +9,12 @@ h2 タスク一覧
     = f.label :status_cont, 'ステータス', class: 'col-sm-2 col-form-label'
     .col-sm-10
       = f.select :status_cont, Task.set_statuses, include_blank: '選択してください', class: 'form-control'
+  .form-group.row
+    = f.label :labels_id_eq_any, 'ラベル', class: 'col-sm-2 col-form-label'
+    - Label.all.each do |label|
+      = f.check_box :labels_id_eq_any, {multiple: true, checked: label[:checked], disabled: label[:disabled], include_hidden: false} , label[:id], class: 'form-control'
+      label = label.term
+    = f.hidden_field :search, value: 'true'
   .form-group
     = f.submit '検索', class: 'btn btn-outline-primary'
 
@@ -24,9 +30,10 @@ table.table.table-hover
     tr
       th = Task.human_attribute_name(:title)
       th = Task.human_attribute_name(:description)
-      th = sort_link(@q, :limited_at, '終了期限でソートする', default_order: :asc)
-      th = sort_link(@q, :status, 'ステータスでソートする', default_order: :asc)
-      th = sort_link(@q, :priority, '優先順位でソートする', default_order: :asc)
+      th = sort_link(@q, :limited_at, '終了期限でソートする', sort: true, default_order: :asc)
+      th = sort_link(@q, :status, 'ステータスでソートする', sort: true, default_order: :asc)
+      th = sort_link(@q, :priority, '優先順位でソートする', sort: true, default_order: :asc)
+      th = Task.human_attribute_name(:term)
   tbody
     - @tasks.each do |task|
       tr
@@ -35,6 +42,10 @@ table.table.table-hover
         td = task.limited_at
         td = task.status
         td = task.priority
+        td
+          - task.labels.each do |l|
+            = l.term
+            br
         td
           = link_to '詳細', task_path(task.id), class: 'btn btn-info'
           = link_to '編集', edit_task_path(task.id), class: 'btn btn-primary mr-3'

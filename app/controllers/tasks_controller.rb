@@ -1,12 +1,23 @@
 class TasksController < ApplicationController
 
   before_action :set_tasks, only: [:show, :edit, :update, :destroy]
+  before_action :set_labels, only: [:create, :update]
   before_action :current_user?, only: [:edit, :update, :destroy]
   skip_before_action :login_forbided
 
   def index
-    @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result.page(params[:page]).recent
+
+    @tasks = current_user.tasks.page(params[:page]).recent
+    @q = Task.ransack
+    if params[:sort]
+      @q = current_user.tasks.ransack(params[:q])
+      @tasks = @q.result.page(params[:page]).recent
+    elsif params[:q]
+      @labels = Label.all
+      @q = current_user.tasks.ransack(params[:q])
+      #binding.pry
+      @tasks = @q.result(distinct: true).includes(:labels, :labellings).page(params[:page]).recent
+    end
   end
 
   def show
@@ -20,6 +31,7 @@ class TasksController < ApplicationController
   def create
     @task = current_user.tasks.build(task_params)
     if @task.save
+      @task.save_labels(@lables)
       redirect_to task_path(@task.id), notice: "タスク「#{@task.title}」を登録しました。"
     else
       render :new
@@ -27,10 +39,12 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @labels = @task.labels.pluck(:term).join(',')
   end
 
   def update
     if @task.update(task_params)
+      @task.save_labels(@lables)
       redirect_to task_path(@task.id), notice: "タスク「#{@task.title}」を更新しました。"
     else
       render :edit
@@ -48,8 +62,12 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
   end
 
+  def set_labels
+    @lables = params[:task][:term].split(',')
+  end
+
   def task_params
-    params.require(:task).permit(:title, :description, :limited_at, :status, :priority)
+    params.require(:task).permit(:title, :description, :limited_at, :status, :priority, label_ids: [])
   end
 
   def current_user?

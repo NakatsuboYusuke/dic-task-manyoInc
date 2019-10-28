@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
 
   protect_from_forgery with: :exception
-  include ErrorHandler #if Rails.env.production?
+  include ErrorHandler #if Rails.env.production? #=> move or not move
 
   helper_method :current_user
   before_action :basic
